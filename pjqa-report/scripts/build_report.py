@@ -172,7 +172,7 @@ def parse_mvp(md):
     inc = [clean(b) for b in bullets(sec.get('포함 (첫 버전)', sec.get('포함', '')))]
     exc = [clean(b) for b in bullets(sec.get('제외 (2차)', sec.get('제외', '')))]
     signal, trace = get('성공 신호'), get('근거 추적')
-    plan_steps, plan_screens, plan_decide = [], [], []
+    plan_steps, plan_screens, plan_decide, plan_platform, plan_flow = [], [], [], [], []
     plan = sec.get('추천 MVP 기획', '')
     sub = sections('## 추천\n' + plan) if plan else {}
     cur = None
@@ -185,7 +185,11 @@ def parse_mvp(md):
             plan_screens.append(clean(re.sub(r'^\s*[-*]\s*', '', l)))
         elif cur and '결정' in cur and l.strip().startswith('-'):
             plan_decide.append(clean(re.sub(r'^\s*[-*]\s*', '', l)))
-    return defi, inc, exc, signal, trace, plan_steps, plan_screens, plan_decide
+        elif cur and '플랫폼' in cur and l.strip().startswith('-'):
+            plan_platform.append(clean(re.sub(r'^\s*[-*]\s*', '', l)))
+        elif cur and '흐름' in cur and l.strip().startswith('-'):
+            plan_flow.append(clean(re.sub(r'^\s*[-*]\s*', '', l)))
+    return defi, inc, exc, signal, trace, plan_steps, plan_screens, plan_decide, plan_platform, plan_flow
 
 # ---------- render ----------
 CSS = """
@@ -232,7 +236,7 @@ def build(d):
     stages, curves, floors, main_floor, meet, problem = parse_journey(read(d, '02-journeys.md'))
     qitems, adopted, deferred, dropped = parse_quadrant(read(d, '03-quadrant.md'))
     asis, changed, why, keep, tobe, hl = parse_arrow(read(d, '04-arrow.md'))
-    defi, inc, exc, signal, trace, steps, screens, decide = parse_mvp(read(d, '05-mvp.md'))
+    defi, inc, exc, signal, trace, steps, screens, decide, platform, flow_steps = parse_mvp(read(d, '05-mvp.md'))
     pcolor = {p['name']: COLORS[i % len(COLORS)] for i, p in enumerate(people)}
 
     # overview
@@ -346,9 +350,12 @@ def build(d):
         {'<div style="margin-top:8px">완료 판정 — <b>' + esc(judge.strip()) + '</b></div>' if judge else ''}</div></div>"""
     sc = ''.join(f'<li>· {esc(x)}</li>' for x in screens)
     dc = ''.join(f'<li>· {esc(x)}</li>' for x in decide)
-    pl = f"""<section class="page" id="p6"><h1>추천 MVP 기획</h1><h2>만들 순서</h2>{tl}
+    pf = ''.join(f'<li>· {esc(x)}</li>' for x in platform)
+    fw = ''.join(f'<div style="margin-top:14px;line-height:1.65"><b style="color:{AMBER}">사용자 흐름</b> — {esc(x)}</div>' for x in flow_steps)
+    plat_card = f'<div class="card" style="margin-top:20px"><div style="font-weight:800;color:{AMBER}">플랫폼</div><ul style="margin-top:8px">{pf}</ul></div>' if platform else ''
+    pl = f"""<section class="page" id="p6"><h1>추천 MVP 기획</h1>{plat_card}<h2>만들 순서</h2>{tl}
     <div class="grid g2"><div class="card"><div style="font-weight:800">핵심 화면·흐름</div><ul style="margin-top:8px">{sc}</ul></div>
-    <div class="card"><div style="font-weight:800">착수 전 결정할 것</div><ul style="margin-top:8px">{dc}</ul></div></div></section>"""
+    <div class="card"><div style="font-weight:800">착수 전 결정할 것</div><ul style="margin-top:8px">{dc}</ul></div></div>{fw}</section>"""
 
     nav_items = [('p0', '개요', ''), ('p1', '페르소나', 'P'), ('p2', '여정', 'J'), ('p3', '사분면', 'Q'), ('p4', '화살표', 'A'), ('p5', 'MVP', ''), ('p6', '추천 기획', '')]
     nav = ''.join(f'<button data-p="{i}" class="{"on" if k == 0 else ""}"><b>{esc(l)}</b>{esc(n)}</button>' for k, (i, n, l) in enumerate(nav_items))
