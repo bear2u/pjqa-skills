@@ -26,7 +26,7 @@
 | `pjqa-journey` | J — 여정 겹치기, 바닥·접점 특정, 진짜 문제 한 문장 | `02-journeys.md` |
 | `pjqa-quadrant` | Q — 후보를 영향×난이도로 나눠 왼쪽 위만 채택 | `03-quadrant.md` |
 | `pjqa-arrow` | A — AS-IS 흐름에서 바꿀 화살표 1개 선정 | `04-arrow.md` |
-| `pjqa-mvp` | 종합 — MVP 정의문·포함/제외·성공 신호 | `05-mvp.md` |
+| `pjqa-mvp` | 종합 — MVP 정의문·포함/제외·성공 신호·추천 MVP 기획 | `05-mvp.md` |
 
 단계 스킬은 단독 실행도 됩니다. 앞 단계 산출물이 있으면 거기서 이어서 시작합니다.
 
