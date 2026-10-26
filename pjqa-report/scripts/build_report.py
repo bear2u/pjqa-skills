@@ -16,13 +16,17 @@ def read(d, name):
 
 def sections(md):
     out, cur, buf = {}, None, []
+    J = chr(10)
     for line in md.splitlines():
         if line.startswith('## '):
-            if cur: out[cur] = '\n'.join(buf)
+            if cur: out[cur] = J.join(buf)
             cur, buf = line[3:].strip(), []
+        elif line.startswith('# '):
+            if cur: out[cur] = J.join(buf)
+            cur, buf = line[2:].strip(), []
         elif cur:
             buf.append(line)
-    if cur: out[cur] = '\n'.join(buf)
+    if cur: out[cur] = J.join(buf)
     return out
 
 def bullets(txt):
