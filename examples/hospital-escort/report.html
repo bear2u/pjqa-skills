@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PJQA 보고서 — hospital-escort</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#e9eef5;font-family:-apple-system,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif;display:flex;min-height:100vh}
+nav{width:230px;flex:none;background:#0a0e14;border-right:1px solid #2a3242;padding:28px 18px;position:sticky;top:0;height:100vh}
+nav .logo{font-size:15px;color:#9aa7b4;letter-spacing:2px;margin-bottom:6px}
+nav .proj{font-size:20px;font-weight:800;line-height:1.35;margin-bottom:26px}
+nav button{display:block;width:100%;text-align:left;background:none;border:0;color:#9aa7b4;font-size:16.5px;padding:11px 12px;border-radius:10px;cursor:pointer;margin-bottom:4px}
+nav button.on{background:#161c26;color:#fff;font-weight:700}
+nav button b{font-family:ui-monospace,monospace;margin-right:8px}
+main{flex:1;padding:44px 52px;max-width:1240px}
+.page{display:none}.page.on{display:block}
+h1{font-size:34px;margin-bottom:8px}h2{font-size:24px;margin:30px 0 14px}
+.sub{color:#9aa7b4;font-size:16px;line-height:1.6}
+.card{background:#11161d;border:1.5px solid #2a3242;border-radius:16px;padding:24px 26px}
+.def{font-size:30px;font-weight:800;line-height:1.5}
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr 1fr}
+.kpi .n{font-size:15px;color:#9aa7b4}.kpi .v{font-size:21px;font-weight:800;margin-top:6px;line-height:1.4}
+ul{list-style:none}li{font-size:16.5px;line-height:1.65;padding:3px 0}
+.tag{display:inline-block;font-size:13.5px;font-weight:800;padding:4px 12px;border-radius:999px;border:2px solid}
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.step{background:#11161d;border:1.5px solid #2a3242;border-radius:14px;padding:18px 16px;font-size:16.5px;font-weight:700;max-width:230px;display:flex;align-items:center}
+.arr{display:flex;align-items:center;padding:0 7px;color:#5c6875;font-size:22px;font-weight:800}
+.arr.hl{color:#ffc24b;text-shadow:0 0 14px rgba(255,194,75,.8)}
+.quad{position:relative;height:430px;border:2px solid #2a3242;border-radius:14px;background:#0a0e14}
+.quad .qx{position:absolute;left:50%;top:0;width:2px;height:100%;background:#2a3242}
+.quad .qy{position:absolute;top:50%;left:0;height:2px;width:100%;background:#2a3242}
+.quad .hi{position:absolute;left:0;top:0;width:50%;height:50%;background:rgba(255,194,75,.07);border-radius:14px 0 0 0}
+.qi{position:absolute;font-size:16px;font-weight:700;white-space:nowrap}
+.qi.dim{color:#5c6875;font-weight:600}
+.ax{position:absolute;font-size:13.5px;color:#9aa7b4}
+.step-tl{display:flex;gap:16px;margin-bottom:14px}
+.step-tl .no{flex:none;width:38px;height:38px;border-radius:50%;background:#ffc24b;color:#111;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:18px}
+footer{color:#5c6875;font-size:13.5px;margin-top:44px}
+@media(max-width:860px){body{flex-direction:column}nav{width:100%;height:auto;position:static}main{padding:26px 20px}.g3,.g2{grid-template-columns:1fr}}
+</style></head><body>
+<nav><div class="logo">PJQA REPORT</div><div class="proj">hospital-escort</div><button data-p="p0" class="on"><b></b>개요</button><button data-p="p1" class=""><b>P</b>페르소나</button><button data-p="p2" class=""><b>J</b>여정</button><button data-p="p3" class=""><b>Q</b>사분면</button><button data-p="p4" class=""><b>A</b>화살표</button><button data-p="p5" class=""><b></b>MVP</button><button data-p="p6" class=""><b></b>추천 기획</button>
+<div style="color:#5c6875;font-size:13px;margin-top:22px;line-height:1.6">병원에 혼자 가기 어려운 부모님을 대신 동행해 줄 사람을 매칭하는 서비스</div></nav>
+<main><section class="page on" id="p0"><h1>hospital-escort</h1><p class="sub">병원에 혼자 가기 어려운 부모님을 대신 동행해 줄 사람을 매칭하는 서비스</p>
+    <div class="card" style="margin-top:24px"><div style="color:#ffc24b;font-weight:800;font-size:15px;letter-spacing:2px">MVP 정의문</div><div class="def" style="margin-top:10px">함께 가지 못한 자녀의 진료 중 모르는 시간을, 동행인이 남기는 소견 메모와 처방·다음 예약 리포트가 닿는 것으로 바꾼다.</div></div>
+    <div class="card" style="margin-top:18px;border-color:#ff6b9d"><div style="color:#ff6b9d;font-weight:800;font-size:15px;letter-spacing:2px">진짜 문제</div><div style="font-size:21px;font-weight:700;margin-top:8px;line-height:1.55">동행 자체가 아니라, 진료실에서 오간 이야기가 자녀에게 정확히 닿지 않는 시간이 문제다.</div></div>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card kpi"><div class="n">주인공</div><div class="v">신청하는 자녀 · 동행인 · 부모님</div></div>
+      <div class="card kpi"><div class="n">채택 기능 (왼쪽 위)</div><div class="v">진료 결과 리포트</div></div>
+      <div class="card kpi"><div class="n">바꾸는 화살표</div><div class="v">3 → 4 구간, "진료실에서 오간 이야기가 자녀에게 닿는 구간"</div></div>
+    </div></section><section class="page" id="p1"><h1>P — 사람으로 펼치기</h1><div class="grid g3" style="margin-top:20px"><div class="card" style="border-top:5px solid #2fd4b6"><div style="font-size:23px;font-weight:800;color:#2fd4b6">신청하는 자녀</div>
+        <div style="color:#9aa7b4;margin:4px 0 14px">예약·결제하는 사람</div><ul><li>· 동행 예약</li><li>· 결제</li><li>· 진료 결과 확인</li><li>· 다음 진료 챙기기</li></ul>
+        <div style="margin-top:12px;color:#9aa7b4">대표 불편 — 회사를 빠질 수 없어 직접 모시고 가지 못한다</div></div><div class="card" style="border-top:5px solid #ff9f43"><div style="font-size:23px;font-weight:800;color:#ff9f43">동행인</div>
+        <div style="color:#9aa7b4;margin:4px 0 14px">함께 가는 사람</div><ul><li>· 픽업·이동 지원</li><li>· 접수·수납 대행</li><li>· 진료 내용 기록</li><li>· 귀가 동행</li></ul>
+        <div style="margin-top:12px;color:#9aa7b4">대표 불편 — 의사 말을 빠짐없이 기록해 자녀에게 전해야 하는 부담</div></div><div class="card" style="border-top:5px solid #4dd0e1"><div style="font-size:23px;font-weight:800;color:#4dd0e1">부모님</div>
+        <div style="color:#9aa7b4;margin:4px 0 14px">동행 받는 주인공</div><ul><li>· 진료 정보 제공</li><li>· 거동 상태 공유</li><li>· 복용약 정보 제공</li></ul>
+        <div style="margin-top:12px;color:#9aa7b4">대표 불편 — 자녀에게 짐이 되는 것 같고, 낯선 사람과 가는 것도 부담</div><span class="tag" style="border-color:#4dd0e1;color:#4dd0e1;margin-top:12px">결제하지 않지만 설계의 중심</span></div></div>
+    <h2>주변 인물</h2><ul><li>· 병원 의료진 — 진료의 주체지만 이 서비스 흐름의 설계 대상은 아님</li></ul></section><section class="page" id="p2"><h1>J — 여정을 겹쳐 보기</h1><div style="margin:18px 0"><span class="tag" style="border-color:#2fd4b6;color:#2fd4b6;margin-right:10px">신청하는 자녀</span><span class="tag" style="border-color:#ff9f43;color:#ff9f43;margin-right:10px">동행인</span><span class="tag" style="border-color:#4dd0e1;color:#4dd0e1;margin-right:10px">부모님</span></div>
+    <svg viewBox="0 0 1160 385" style="width:100%;background:#0a0e14;border:1.5px solid #2a3242;border-radius:14px"><rect x="315" y="20" width="530" height="280" fill="#ff6b9d" fill-opacity="0.08"/><g style="color:#2fd4b6"><path d="M 50 88 C 94 102, 227 147, 315 175 C 403 203, 492 255, 580 255 C 668 255, 757 203, 845 175 C 933 147, 1066 102, 1110 88" fill="none" stroke="#2fd4b6" stroke-width="4.5" stroke-linecap="round"/><circle cx="50" cy="88" r="6" fill="currentColor"/><circle cx="315" cy="175" r="6" fill="currentColor"/><circle cx="580" cy="255" r="6" fill="currentColor"/><circle cx="845" cy="175" r="6" fill="currentColor"/><circle cx="1110" cy="88" r="6" fill="currentColor"/></g><g style="color:#ff9f43"><path d="M 50 175 C 94 175, 227 162, 315 175 C 403 188, 492 255, 580 255 C 668 255, 757 203, 845 175 C 933 147, 1066 102, 1110 88" fill="none" stroke="#ff9f43" stroke-width="4.5" stroke-linecap="round"/><circle cx="50" cy="175" r="6" fill="currentColor"/><circle cx="315" cy="175" r="6" fill="currentColor"/><circle cx="580" cy="255" r="6" fill="currentColor"/><circle cx="845" cy="175" r="6" fill="currentColor"/><circle cx="1110" cy="88" r="6" fill="currentColor"/></g><g style="color:#4dd0e1"><path d="M 50 255 C 94 248, 227 228, 315 215 C 403 202, 492 196, 580 175 C 668 154, 757 88, 845 88 C 933 88, 1066 160, 1110 175" fill="none" stroke="#4dd0e1" stroke-width="4.5" stroke-linecap="round"/><circle cx="50" cy="255" r="6" fill="currentColor"/><circle cx="315" cy="215" r="6" fill="currentColor"/><circle cx="580" cy="175" r="6" fill="currentColor"/><circle cx="845" cy="88" r="6" fill="currentColor"/><circle cx="1110" cy="175" r="6" fill="currentColor"/></g><text x="50" y="368" fill="#9aa7b4" font-size="17" text-anchor="middle">예약 전</text><text x="315" y="368" fill="#9aa7b4" font-size="17" text-anchor="middle">병원 가는 길</text><text x="580" y="368" fill="#9aa7b4" font-size="17" text-anchor="middle">대기·진료 중</text><text x="845" y="368" fill="#9aa7b4" font-size="17" text-anchor="middle">진료 끝</text><text x="1110" y="368" fill="#9aa7b4" font-size="17" text-anchor="middle">결과 공유</text></svg>
+    <div class="grid g2" style="margin-top:18px"><div class="card"><div style="color:#ff6b9d;font-weight:800">바닥</div><ul style="margin-top:8px"><li>· 자녀: 대기·진료 중, 아무것도 모르는 시간</li><li>· 동행인: 대기·진료 중, 기록 부담 구간</li></ul>
+    <div style="margin-top:10px">주 바닥 — <b>진료 중 자녀가 아무것도 모르는 시간</b></div></div>
+    <div class="card"><div style="color:#ffc24b;font-weight:800">접점</div><div style="margin-top:8px;line-height:1.6">진료 직후 결과 리포트 도착 — 동행인이 정리한 소견·처방·다음 예약이 자녀에게 닿는 순간</div></div></div>
+    <div class="card" style="margin-top:18px;border-color:#ff6b9d"><div style="color:#ff6b9d;font-weight:800;font-size:15px;letter-spacing:2px">진짜 문제</div>
+    <div style="font-size:21px;font-weight:700;margin-top:8px;line-height:1.55">동행 자체가 아니라, 진료실에서 오간 이야기가 자녀에게 정확히 닿지 않는 시간이 문제다.</div></div></section><section class="page" id="p3"><h1>Q — 왼쪽 위만 남기기</h1>
+    <div class="quad" style="margin-top:20px"><div class="hi"></div><div class="qx"></div><div class="qy"></div><div class="qi " style="left:4%;top:8%;color:#ffc24b">● 진료 결과 리포트 (소견·처방·다음 예약을 양식화해 자동 공유)</div><div class="qi " style="left:4%;top:22%;color:#ffc24b">● 실시간 단계 공유 (출발·도착·진료 시작·종료 알림)</div><div class="qi dim" style="left:54%;top:8%;color:">· 동행인 신원·경력 검증 강화</div><div class="qi dim" style="left:54%;top:22%;color:">· 병원 예약 대행 연동</div><div class="qi dim" style="left:54%;top:36%;color:">· 진료 녹음·자동 전사</div><div class="qi dim" style="left:4%;top:58%;color:">· 약 배달 연계</div><div class="qi dim" style="left:54%;top:58%;color:">· 월 정기 동행 구독</div>
+    <div class="ax" style="left:10px;top:-24px">영향 큼</div><div class="ax" style="left:10px;bottom:-24px">영향 작음</div><div class="ax" style="left:45%;bottom:-24px">쉬움 →</div>
+    <div class="ax" style="left:10px;bottom:-24px;top:auto"></div><div class="ax" style="right:10px;bottom:-24px">어려움</div></div>
+    <div class="grid g2" style="margin-top:44px"><div class="card"><div style="color:#ffc24b;font-weight:800">채택 (왼쪽 위)</div><ul style="margin-top:8px"><li>· 진료 결과 리포트 — 주 바닥을 메우는 핵심</li><li>· 실시간 단계 공유 — 이동·대기 구간의 부분 바닥을 메움</li></ul></div>
+    <div class="card"><div style="color:#9aa7b4;font-weight:800">2차로 미룸</div><ul style="margin-top:8px"><li>· 동행인 검증 강화 — 운영 체계 필요</li><li>· 병원 예약 대행 연동 — 병원별 연동 부담</li><li>· 진료 녹음·전사 — 동의 절차 설계가 선행돼야 함</li><li>· 약 배달 연계·정기 구독 — 지금 문제와 연결 약함</li></ul></div></div>
+    </section><section class="page" id="p4"><h1>A — 화살표 하나만 바꾸기</h1><h2>AS-IS (지금 흐름)</h2><div class="flow"><div class="step">자녀가 휴가를 내거나 포기</div><div class="arr ">→</div><div class="step">부모님이 혼자(또는 자녀와) 병원 이동</div><div class="arr ">→</div><div class="step">진료 (자녀는 모름)</div><div class="arr hl">→</div><div class="step">부모님이 기억나는 것만 전화로 전달</div><div class="arr ">→</div><div class="step">처방전·다음 예약은 종이와 기억으로 관리</div></div>
+    <div class="card" style="margin-top:22px;border-color:#ffc24b"><div style="color:#ffc24b;font-weight:800">바꾸는 화살표 (딱 1개)</div>
+    <div style="font-size:19px;font-weight:700;margin-top:8px;line-height:1.55">3 → 4 구간, "진료실에서 오간 이야기가 자녀에게 닿는 구간" — 지금은 부모님의 기억에 의존해 빠지고 왜곡된다</div><div style="color:#9aa7b4;margin-top:8px">근거: J의 주 바닥(진료 중 자녀가 모르는 시간)과 겹침 / Q 채택 기능(진료 결과 리포트)이 이 구간을 바꾼다</div></div>
+    <div class="grid g2" style="margin-top:18px"><div class="card"><div style="font-weight:800">그대로 두는 구간</div><ul style="margin-top:8px"><li>· 병원 예약 방식 — 기존 병원 예약 그대로, 대행 연동은 2차</li><li>· 이동 방식 — 동행인의 픽업 지원 수준까지만, 차량 서비스 확장은 안 함</li></ul></div>
+    <div class="card"><div style="font-weight:800;color:#ffc24b">TO-BE</div><div style="margin-top:8px;line-height:1.65">일정 조율 → 병원 이동 → 진료 (동행인이 양식으로 기록) → 소견·처방·다음 예약 리포트가 자녀에게 닿음 → 관리 — 달라지는 건 3→4 구간뿐</div></div></div></section><section class="page" id="p5"><h1>MVP — 정의</h1>
+    <div class="card" style="margin-top:20px"><div style="color:#ffc24b;font-weight:800;font-size:15px;letter-spacing:2px">정의문</div><div class="def" style="margin-top:10px">함께 가지 못한 자녀의 진료 중 모르는 시간을, 동행인이 남기는 소견 메모와 처방·다음 예약 리포트가 닿는 것으로 바꾼다.</div></div>
+    <div class="grid g2" style="margin-top:18px"><div class="card"><div style="font-weight:800;color:#2fd4b6">포함 (첫 버전)</div><ul style="margin-top:8px"><li>· 진료 결과 리포트 — 정의문의 핵심 변화 담당</li><li>· 실시간 단계 공유 — 이동·대기 구간 담당</li><li>· 예약·결제 기본형 — 동행이 성립하기 위한 최소 토대</li></ul></div>
+    <div class="card"><div style="font-weight:800;color:#9aa7b4">제외 (2차)</div><ul style="margin-top:8px"><li>· 동행인 검증 강화 — 운영 체계 필요</li><li>· 병원 예약 대행 연동 — 병원별 연동 부담</li><li>· 진료 녹음·전사 — 동의 절차 설계 선행</li><li>· 약 배달 연계·정기 구독 — 지금 문제와 연결 약함</li></ul></div></div>
+    <div class="card" style="margin-top:18px"><div style="font-weight:800">성공 신호</div><div style="margin-top:8px;line-height:1.6">결과 리포트를 받은 자녀가 다음 진료에도 같은 동행인을 재예약하는 행동이 반복되는가</div>
+    <div style="color:#9aa7b4;margin-top:12px;font-size:14.5px">근거 추적 — - 페르소나: 신청하는 자녀 (01) / 바닥: 진료 중 모르는 시간 (02) / 채택: 진료 결과 리포트 (03) / 화살표: 진료→전달 구간 (04)</div></div></section><section class="page" id="p6"><h1>추천 MVP 기획</h1><h2>만들 순서</h2><div class="step-tl"><div class="no">1</div><div class="card" style="flex:1"><div style="font-size:19px;font-weight:800">진료 결과 리포트 루프 (바꾼 화살표 구간)</div>
+        <div style="color:#9aa7b4;margin-top:5px;line-height:1.6">동행인 양식 입력(소견·처방·다음 예약) → 자녀 공유</div>
+        <div style="margin-top:8px">완료 판정 — <b>진료 종료 후 리포트가 자녀에게 도착한다</b></div></div></div><div class="step-tl"><div class="no">2</div><div class="card" style="flex:1"><div style="font-size:19px;font-weight:800">실시간 단계 공유</div>
+        <div style="color:#9aa7b4;margin-top:5px;line-height:1.6">출발·도착·진료 시작·종료 알림</div>
+        <div style="margin-top:8px">완료 판정 — <b>단계가 바뀔 때마다 자녀에게 알림이 간다</b></div></div></div><div class="step-tl"><div class="no">3</div><div class="card" style="flex:1"><div style="font-size:19px;font-weight:800">예약·결제 기본형</div>
+        <div style="color:#9aa7b4;margin-top:5px;line-height:1.6">동행 예약·결제</div>
+        <div style="margin-top:8px">완료 판정 — <b>예약 1건이 결제까지 끝난다</b></div></div></div>
+    <div class="grid g2"><div class="card"><div style="font-weight:800">핵심 화면·흐름</div><ul style="margin-top:8px"><li>· 결과 리포트 (자녀) — 정의문의 핵심 변화 담당</li><li>· 리포트 입력 양식 (동행인) — 소견·처방·다음 예약 입력</li><li>· 동행 예약 (자녀) — 기본형 담당</li></ul></div>
+    <div class="card"><div style="font-weight:800">착수 전 결정할 것</div><ul style="margin-top:8px"><li>· 동행인 최소 신원 확인 절차 (본인 확인 수준)</li><li>· 진료 정보 공유에 대한 부모님 동의 방식</li><li>· 플랫폼 (앱 / 문자·카톡 병행 여부)</li></ul></div></div></section><footer>PJQA 종합 보고서 — 산출물 00~05에서 자동 생성. 원본 마크다운이 근거이며 이 보고서는 요약본이다.</footer></main>
+<script>document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.getElementById(b.dataset.p).classList.add('on');window.scrollTo(0,0)})</script>
+</body></html>
